@@ -1,0 +1,29 @@
+[
+  {
+    "name": "ch.qos.logback.classic.Logger",
+    "methods": [
+      {
+        "name": "log",
+        "parameterTypes": [
+          "org.slf4j.Marker",
+          "java.lang.String",
+          "int",
+          "java.lang.String",
+          "[Ljava.lang.Object;",
+          "java.lang.Throwable"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "org.apache.ibatis.logging.slf4j.Slf4jImpl",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  }
+]
