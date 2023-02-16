@@ -14,6 +14,7 @@ import org.springframework.aot.hint.RuntimeHintsRegistrar;
 import org.springframework.aot.hint.TypeReference;
 import org.springframework.util.ClassUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DemoRuntimeHints implements RuntimeHintsRegistrar {
@@ -30,6 +31,7 @@ public class DemoRuntimeHints implements RuntimeHintsRegistrar {
 
         hints.proxies().registerJdkProxy(Interceptor.class);
         hints.proxies().registerJdkProxy(ProxyFactory.class);
+        hints.reflection().registerType(ArrayList.class, hint -> hint.withMembers(MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS));
 
         // TODO define all mapper
         hints.proxies().registerJdkProxy(DbMapper.class);
@@ -48,5 +50,8 @@ public class DemoRuntimeHints implements RuntimeHintsRegistrar {
                 hint.withMembers(MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS));
         hints.reflection().registerType(SqlSessionFactoryBean.class, hint ->
                 hint.withMembers(MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS));
+
+        hints.resources().registerPattern("com/example/**/mapper/*.xml");
+        hints.resources().registerPattern("com/mysql/cj/*.properties");
     }
 }
